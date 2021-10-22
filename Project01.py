@@ -56,7 +56,7 @@ z_code.grid(row=5,column=1)
 
 #create submit button
 subimit_but = Button(root, text="Add", command = lambda:submit())
-subimit_but.grid(row=6,column=0, columnspan=2, pady=10,padx=10, ipadx=150)
+subimit_but.grid(row=6,column=0, columnspan=2, pady=5,padx=10, ipadx=150)
 
 #create submit function to database
 def submit():
@@ -85,17 +85,66 @@ def submit():
     #Close connection
     conn.close()
 
-
-
     #clear the text boxes
-    f_name.delete(0)
-    l_name.delete(0)
-    add.delete(0)
-    city.delete(0)
-    state.delete(0)
-    z_code.delete(0)
+    f_name.delete(0,END)
+    l_name.delete(0,END)
+    add.delete(0,END)
+    city.delete(0,END)
+    state.delete(0,END)
+    z_code.delete(0,END)
 
-    pass
+
+#create a view button
+view_but = Button(root, text="View", command = lambda:view())
+view_but.grid(row=7,column=0, columnspan=2, pady=5,padx=10, ipadx=150)
+
+#create submit function to database
+def view():
+
+    #Create a database or connect
+    conn = sqlite3.connect('address_book.db')
+
+    #Create cursor
+    c = conn.cursor()
+
+    #Inser into a table
+    c.execute("SELECT *,oid FROM addresses")
+    records=c.fetchall()
+    print(records)
+
+    #commit changes
+    conn.commit()
+
+    #Close connection
+    conn.close()
+
+
+
+#create a view button
+clearall_but = Button(root, text="Clear All", command = lambda:clearall())
+clearall_but.grid(row=8,column=0, columnspan=2, pady=5,padx=10, ipadx=150)
+
+#create submit function to database
+def clearall():
+
+    #Create a database or connect
+    conn = sqlite3.connect('address_book.db')
+
+    #Create cursor
+    c = conn.cursor()
+
+    #Inser into a table
+    c.execute("DELETE FROM addresses")
+
+
+
+    #commit changes
+    conn.commit()
+
+    #Close connection
+    conn.close()
+
+
 
 #commit changes
 conn.commit()
