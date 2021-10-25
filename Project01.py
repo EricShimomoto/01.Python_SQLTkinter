@@ -5,7 +5,7 @@ import sqlite3
 
 root = Tk()
 root.title('My first datapbase applicartion')
-root.geometry("400x400")
+root.geometry("355x250")
 
 #Database
 
@@ -27,7 +27,7 @@ c = conn.cursor()
 
 #Create labels
 f_name_label = Label(root,text='First Name')
-f_name_label.grid(row=0,column=0,padx=20)
+f_name_label.grid(row=0,column=0,padx=20,pady=(10,0))
 l_name_label = Label(root,text='Last Name')
 l_name_label.grid(row=1,column=0)
 add_label = Label(root,text='Address')
@@ -42,7 +42,7 @@ z_code_label.grid(row=5,column=0,padx=20)
 
 #Create text box
 f_name = Entry(root,width=30)
-f_name.grid(row=0,column=1,padx=20)
+f_name.grid(row=0,column=1,padx=20,pady=(10,0))
 l_name = Entry(root,width=30)
 l_name.grid(row=1,column=1)
 add = Entry(root,width=30)
@@ -120,9 +120,9 @@ def view():
 
 
 
-#create a view button
+#create a clearall button
 clearall_but = Button(root, text="Clear All", command = lambda:clearall())
-clearall_but.grid(row=8,column=0, columnspan=2, pady=5,padx=10, ipadx=150)
+clearall_but.grid(row=8,column=0, columnspan=2, pady=5,padx=10, ipadx=140)
 
 #create submit function to database
 def clearall():
